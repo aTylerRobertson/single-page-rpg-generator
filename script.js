@@ -3946,11 +3946,11 @@ const generate = () => {
 
     var i = Math.floor(Math.random()*nouns.length);
     var noun1 = nouns[i];
-    if(noun1.match(/[y]$/i)) {
+    if(noun1.match(/[^aeiou][y]$/i)) {
       noun1 = noun1.replace(/[y]$/i,'ies');
-    } else if (noun1.match(/[^i][aeiou]{1,2}[xs]$/i)) {
+    } else if (noun1.match(/[^i][aeiou]{1,2}[xs]{1,2}$/i)) {
       noun1 += 'es';
-    } else if (!noun1.match(/ce$/i) && !noun1.match(/s$/i)) {
+    } else if (!noun1.match(/s$/i)){
       noun1 += 's';
     }
     $(".noun1").text(noun1);
@@ -3958,11 +3958,11 @@ const generate = () => {
 
     var i = Math.floor(Math.random()*nouns.length);
     var noun2 = nouns[i];
-    if(noun2.match(/[y]$/i)) {
+    if(noun2.match(/[^aeiou][y]$/i)) {
       noun2 = noun2.replace(/[y]$/i,'ies');
-    } else if (noun2.match(/[^i][aeiou]{1,2}[xs]$/i)) {
+    } else if (noun2.match(/[^i][aeiou]{1,2}[xs]{1,2}$/i)) {
       noun2 += 'es';
-    } else if (!noun2.match(/ce$/i)) {
+    } else if (!noun2.match(/s$/i)){
       noun2 += 's';
     }
     $(".noun2").text(noun2);
