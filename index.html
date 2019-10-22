@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Single-Page RPG Generator</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style type="text/css">
+    .full-page {
+      max-width: 80vw;
+      padding: 20px;
+    }
+    h4 {
+      font-weight: bolder;
+      font-size: 1.1em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container full-page">
+    <div class="row">
+      <div class="col-8">
+        <h1 class="noun1 text-capitalize text-center display-1 font-weight-bolder text-info"></h1>
+        <h1 class="text-center text-muted display-1" style="margin: -0.7em auto;">&</h1>
+        <h1 class="noun2 text-capitalize text-center display-1 font-weight-bolder text-primary"></h1>
+        <p class="lead">You are the <span class="party-name"></span> of the <span class="hq"></span> <span class="hq-name font-weight-bold font-italic"></span>.</p>
+        <div class="row">
+          <div class="col-6">
+            <h4 class="text-uppercase text-primary">Players: Create Characters</h4>
+            <div class="row">
+              <div class="col-1 h1 font-weight-bolder text-primary">1</div>
+              <div class="col-11">
+                <p>Choose a <b>style</b> for your character: <span class="player-styles"></span></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-1 h1 font-weight-bolder text-primary">2</div>
+              <div class="col-11">
+                <p>Choose a <b>role</b> for your character: <span class="player-roles"></span></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-1 h1 font-weight-bolder text-primary">3</div>
+              <div class="col-11">
+                <p>Choose your <b>number</b>, from 2 to 5. A high number means you're better at <b class="noun1 text-uppercase"></b>. A low number means you're better at <b class="noun2 text-uppercase"></b>.</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-1 h1 font-weight-bolder text-primary">4</div>
+              <div class="col-11">
+                <p>Give your character a name that would fit in a <b><span class="game-setting"></span></b>.</p>
+              </div>
+            </div>
+            <p><b>You have:</b> <span class="player-inventory"></span></p>
+            <p><b>Player goal:</b> Get your character involved in <span class="game-setting text-lowercase"></span> adventures and try to make the best of them.</p>
+            <p><b>Character goal:</b> Choose one or create your own:<br/><span class="character-goals"></span> or <b>Keep Being Awesome</b> (you have nothing to prove).</p>
+            <h4 class="text-uppercase text-primary">Players: Create the <span class="hq"></span></h4>
+            <p>As a group, pick two strengths for the <span class="hq-name font-italic"></span>: <span class="hq-strengths"></span>.</p>
+            <p>Also, pick one problem: <span class="hq-problems"></span>.</p>
+          </div>
+          <div class="col-6">
+            <h4 class="text-uppercase text-primary">Rolling the Dice</h4>
+            <p>When you do something risky, roll <b>1d6</b> to find out how it goes. Roll <b>+1d</b> if you're <b>prepared</b> and <b>+1d</b> if you're an <b>expert</b>. <i>(The GM tells you how many dice to roll, based on your character and the situation.)</i> <b>Roll your dice and compare each die result to your number.</b></p>
+            <div class="row text-primary">
+              <div class="col-1 h1 font-weight-bolder">&darr;</div>
+              <div class="col-11">
+                <p>If you're using <b class="noun1 text-uppercase"></b>, you want to roll <b>under</b> your number.</p>
+              </div>
+            </div>
+            <div class="row text-primary">
+              <div class="col-1 h1 font-weight-bolder">&uarr;</div>
+              <div class="col-11">
+                <p>If you're using <b class="noun2 text-uppercase"></b>, you want to roll <b>over</b> your number.</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-1 h1 font-weight-bolder text-muted">0</div>
+              <div class="col-11">
+                <p><b>If none of your dice succeed,</b> it goes wrong. The GM says how things get worse somehow.</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-1 h1 font-weight-bolder text-muted">1</div>
+              <div class="col-11">
+                <p><b>If one die succeeds,</b> you barely manage it. The GM inflicts a complication, harm, or cost.</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-1 h1 font-weight-bolder text-muted">2</div>
+              <div class="col-11">
+                <p><b>If two dice succeed,</b> you do it well. Good job!</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-1 h1 font-weight-bolder text-muted">3</div>
+              <div class="col-11">
+                <p><b>If three dice succeed,</b> you get a critical success! The GM tells you some extra effect you get.</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-1 h1 font-weight-bolder text-muted">!</div>
+              <div class="col-11">
+                <p><b>If you roll your number exactly,</b> you have <b class="noun1 text-uppercase"></b> and <b class="noun2 text-uppercase"></b>. You get a special insight into what's going on. Ask the GM a question and they'll answer you honestly. Some good questions:</p>
+                <p class="font-italic">What are they really feeling? Who's behind this? How could I get them to ______? What should I be on the lookout for? What's the best way to ______? What's really going on here?</p>
+                <p>You can change your action if you want to, then roll again.</p>
+              </div>
+            </div>
+            <p><b class="text-uppercase">Helping:</b> If you want to help someone else who's rolling, say how you try to help and make a roll. If you succeed, give them <b>+1d</b>.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="row">
+          <div class="col-8">
+            <h4 class="text-uppercase text-primary">GM: Create a <span class="game-setting"></span> Adventure</h4>
+            <p>Roll or choose on the tables below.</p>
+            <div class="row bg-primary text-white text-center text-uppercase">
+              <div class="col-12">
+                <p>A Threat...</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 gm-threats"></div>
+            </div>
+            <div class="row bg-dark text-white text-center text-uppercase">
+              <div class="col-12">
+                <p>Wants to...</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 gm-threat-goals"></div>
+            </div>
+            <div class="row bg-primary text-white text-center text-uppercase">
+              <div class="col-12">
+                <p>The...</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 gm-threat-targets"></div>
+            </div>
+            <div class="row bg-dark text-white text-center text-uppercase">
+              <div class="col-12">
+                <p>Which Will...</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 gm-threat-end-goals"></div>
+            </div>
+          </div>
+          <div class="col-4 text-primary">
+            <p>This page is based on <b><a href="http://www.onesevendesign.com/laserfeelings/">LASERS & FEELINGS: THE DOUBLECLICKS TRIBUTE RPG (v1.2)</a></b> by John Harper.</p>
+            <p><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/us/">This game is licensed under a <b>CC BY-NCSA 3.0 license</b>.</a></p>
+          </div>
+        </div>
+        <div class="row">
+          <h4 class="text-uppercase text-primary">GM: Run the Game</h4>
+          <p>Play to find out how they defeat the threat. Introduce the threat by showing evidence of its recent badness. Before a threat does something to the characters, sohwn signs that it's about to happen, then ask them what they do. <i class="gm-example-scenarios"></i></p>
+          <p>Call for a roll when the situation is uncertain. Don't pre-plan outcomes--let the chips fall where they may. Use failures to push the action forward. The situation always changes after a roll, for good or ill.</p>
+          <p>Ask questions and build on the answers. <i class="gm-example-question"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+</body>
+</html>
