@@ -3945,14 +3945,27 @@ const generate = () => {
     var nouns = words['nouns'];
 
     var i = Math.floor(Math.random()*nouns.length);
-    const noun1 = nouns[i];
+    var noun1 = nouns[i];
+    if(noun1.match(/[y]$/i)) {
+      noun1 = noun1.replace(/[y]$/i,'ies');
+    } else if (noun1.match(/[^i][aeiou]{1,2}[xs]$/i)) {
+      noun1 += 'es';
+    } else if (!noun1.match(/ce$/i) && !noun1.match(/s$/i)) {
+      noun1 += 's';
+    }
     $(".noun1").text(noun1);
     nouns.splice(i,1);
 
     var i = Math.floor(Math.random()*nouns.length);
-    const noun2 = nouns[i];
+    var noun2 = nouns[i];
+    if(noun2.match(/[y]$/i)) {
+      noun2 = noun2.replace(/[y]$/i,'ies');
+    } else if (noun2.match(/[^i][aeiou]{1,2}[xs]$/i)) {
+      noun2 += 'es';
+    } else if (!noun2.match(/ce$/i)) {
+      noun2 += 's';
+    }
     $(".noun2").text(noun2);
-    console.log(noun2);
     nouns.splice(i,1);
 
     // Player styles
