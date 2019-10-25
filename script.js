@@ -3936,40 +3936,268 @@ const words = {
         "wind",
         "worry",
         "worsen"
-    ]
+    ],
+  "places_of_work": [
+    "office",
+    "arcade",
+    "bowling alley",
+    "art gallery",
+    "casino",
+    "circus",
+    "comedy club",
+    "concert hall",
+    "zoo",
+    "aquarium",
+    "country dance hall",
+    "go-kart track",
+    "arena",
+    "movie theater",
+    "multiplex",
+    "cinema",
+    "museum",
+    "planetarium",
+    "herbarium",
+    "bonatic gardens",
+    "music hall",
+    "concert hall",
+    "jazz club",
+    "piano bar",
+    "karaoke bar",
+    "sculpture garden",
+    "opera house",
+    "salsa club",
+    "pool hall",
+    "swimming pool",
+    "public pool",
+    "school",
+    "high school",
+    "elementary school",
+    "police academy",
+    "police precinct",
+    "private detective agency",
+    "travel agency",
+    "baseball stadium",
+    "government office",
+    "office park",
+    "spaceship",
+    "airplane",
+    "ocean liner",
+    "starship",
+    "space station",
+    "interstellar vessel",
+    "interdimensional gate facility",
+    "warehouse",
+    "mill",
+    "mineshaft",
+    "submarine",
+    "aircraft carrier",
+    "cruiser",
+    "commercial train",
+    "passenger train",
+    "pirate ship",
+    "seafaring vessel",
+    "schooner",
+    "galleon",
+    "skiff",
+    "courtroom",
+    "courthouse",
+    "prison",
+    "maximum security prison",
+    "juvenile detention center",
+    "secret base",
+    "flying fortress",
+    "desert island"
+  ],
+  "aka": [
+    "known as",
+    "known only as",
+    "that the locals call",
+    "whose real name is",
+    "called",
+    "referred to as",
+    "commonly known as",
+    "that has been christened",
+    ""
+  ],
+  "animals": [
+    "aardvark",
+    "alligator",
+    "alpaca",
+    "antelope",
+    "ape",
+    "armadillo",
+    "baboon",
+    "badger",
+    "bat",
+    "bear",
+    "beaver",
+    "bison",
+    "boar",
+    "buffalo",
+    "bull",
+    "camel",
+    "canary",
+    "capybara",
+    "cat",
+    "chameleon",
+    "cheetah",
+    "chimpanzee",
+    "chinchilla",
+    "chipmunk",
+    "cougar",
+    "cow",
+    "coyote",
+    "crocodile",
+    "crow",
+    "deer",
+    "dingo",
+    "dog",
+    "donkey",
+    "dromedary",
+    "elephant",
+    "elk",
+    "ewe",
+    "ferret",
+    "finch",
+    "fish",
+    "fox",
+    "frog",
+    "gazelle",
+    "gila monster",
+    "giraffe",
+    "gnu",
+    "goat",
+    "gopher",
+    "gorilla",
+    "grizzly bear",
+    "ground hog",
+    "guinea pig",
+    "hamster",
+    "hedgehog",
+    "hippopotamus",
+    "hog",
+    "horse",
+    "hyena",
+    "ibex",
+    "iguana",
+    "impala",
+    "jackal",
+    "jaguar",
+    "kangaroo",
+    "koala",
+    "lamb",
+    "lemur",
+    "leopard",
+    "lion",
+    "lizard",
+    "llama",
+    "lynx",
+    "mandrill",
+    "marmoset",
+    "mink",
+    "mole",
+    "mongoose",
+    "monkey",
+    "moose",
+    "mountain goat",
+    "mouse",
+    "mule",
+    "muskrat",
+    "mustang",
+    "mynah bird",
+    "newt",
+    "ocelot",
+    "opossum",
+    "orangutan",
+    "oryx",
+    "otter",
+    "ox",
+    "panda",
+    "panther",
+    "parakeet",
+    "parrot",
+    "pig",
+    "platypus",
+    "polar bear",
+    "porcupine",
+    "porpoise",
+    "prairie dog",
+    "puma",
+    "rabbit",
+    "raccoon",
+    "ram",
+    "rat",
+    "reindeer",
+    "reptile",
+    "rhinoceros",
+    "salamander",
+    "seal",
+    "sheep",
+    "shrew",
+    "silver fox",
+    "skunk",
+    "sloth",
+    "snake",
+    "squirrel",
+    "tapir",
+    "tiger",
+    "toad",
+    "turtle",
+    "walrus",
+    "warthog",
+    "weasel",
+    "whale",
+    "wildcat",
+    "wolf",
+    "wolverine",
+    "wombat",
+    "woodchuck",
+    "yak",
+    "zebra"
+  ]
 };
 
 const generate = () => {
 
-    // Begin with the two primary nouns -- our "Lasers" and "Feelings"
-    var nouns = words['nouns'];
+    // Words
 
+    var nouns = words['nouns'];
+    var categories = words['categories'];
+    var occupations = words['occupations'];
+    var adjs = words['adjs'];
+    var occupations = words['occupations'];
+    var objects = words['objects'];
+    var ergative_verbs = words['ergative_verbs'];
+    var places_of_work = words['places_of_work'];
+    var aka = words['aka'];
+    var animals = words['animals'];
+
+    // Game
+
+    // The two primary nouns -- our "Lasers" and "Feelings"
     var i = Math.floor(Math.random()*nouns.length);
     var noun1 = nouns[i];
-    if(noun1.match(/[^aeiou][y]$/i)) {
-      noun1 = noun1.replace(/[y]$/i,'ies');
-    } else if (noun1.match(/[^i][aeiou]{1,2}[xs]{1,2}$/i)) {
-      noun1 += 'es';
-    } else if (!noun1.match(/s$/i)){
-      noun1 += 's';
-    }
     $(".noun1").text(noun1);
+    $(".noun1-plural").text(plural(noun1));
     nouns.splice(i,1);
 
     var i = Math.floor(Math.random()*nouns.length);
     var noun2 = nouns[i];
-    if(noun2.match(/[^aeiou][y]$/i)) {
-      noun2 = noun2.replace(/[y]$/i,'ies');
-    } else if (noun2.match(/[^i][aeiou]{1,2}[xs]{1,2}$/i)) {
-      noun2 += 'es';
-    } else if (!noun2.match(/s$/i)){
-      noun2 += 's';
-    }
     $(".noun2").text(noun2);
+    $(".noun2-plural").text(plural(noun2));
     nouns.splice(i,1);
 
-    // Player styles
-    var adjs = words['adjs'];
+    // Setting
+    var setting = categories[Math.floor(Math.random()*categories.length)];
+    $('.game-setting').text(setting);
+
+    // Players
+
+    // Party name
+    var party = occupations[Math.floor(Math.random()*occupations.length)];
+    $(".party-name").text(plural(party));
+
+    // Styles
     var styles = "";
     for (var i = 0; i < 5; i++) {
       var a = Math.floor(Math.random()*adjs.length);
@@ -3980,8 +4208,7 @@ const generate = () => {
     styles += `or <b class='text-capitalize'>${adjs[a]}.</b>`;
     $(".player-styles").html(styles);
 
-    // Player roles
-    var occupations = words['occupations'];
+    // Roles
     var roles = "";
     for (var i = 0; i < 5; i++) {
       var o = Math.floor(Math.random()*occupations.length);
@@ -3992,15 +4219,9 @@ const generate = () => {
     roles += `or <b class='text-capitalize'>${occupations[o]}.</b>`;
     $(".player-roles").html(roles);
 
-    // Game Setting
-    var categories = words['categories'];
-    var setting = categories[Math.floor(Math.random()*categories.length)];
-    $('.game-setting').text(setting);
-
-    // Player inventory
-    var objects = words['objects'];
+    // Inventory
     var inventory = "";
-    for (var i = 0; i < 2; i++) {
+    for (var i = 0; i < 4; i++) {
       var o = Math.floor(Math.random()*objects.length);
       var a = objects[o].match(/^[aeiou]/i) ? 'an' : 'a';
       inventory += `${a} ${objects[o]}, `;
@@ -4012,7 +4233,6 @@ const generate = () => {
     $(".player-inventory").html(inventory);
 
     // Character goals
-    var ergative_verbs = words['ergative_verbs'];
     var goals = "";
     for (var i = 0; i < 5; i++) {
       var e = Math.floor(Math.random()*ergative_verbs.length);
@@ -4020,38 +4240,52 @@ const generate = () => {
       var n = Math.floor(Math.random()*nouns.length);
       var noun = nouns[n];
       var a = ``;
-      var p = ``;
-      var pl = ``;
       if (s == 1) {
         a = ` the`;
       } else if (s == 2) {
         a = noun.match(/^[aeiou]/i) ? ' an' : ' a';
       } else {
-        if(noun.match(/[y]$/i)) {
-          noun = noun.replace(/[y]$/i,'ies');
-        } else if (noun.match(/[^i][aeiou]{1,2}[xs]$/i)) {
-          pl = 'es';
-        } else if (!noun.match(/ce$/i)) {
-          pl = 's';
-        }
+        noun = plural(noun);
       }
-      goals += `<b class='text-capitalize'>${ergative_verbs[e]}</b><b>${a}</b> <b class='text-capitalize'>${noun}${pl}</b>,</b> `;
+      goals += `<b class='text-capitalize'>${ergative_verbs[e]}</b><b>${a}</b> <b class='text-capitalize'>${noun}</b>,</b> `;
       nouns.splice(n,1);
       occupations.splice(o,1);
     }
     $(".character-goals").html(goals);
 
-    // Party name
-    var occupations = words['occupations'];
-    var party = occupations[Math.floor(Math.random()*occupations.length)];
-    if(party.match(/[y]$/i)) {
-      party = party.replace(/[y]$/i,'ies');
-    } else if (party.match(/[^i][aeiou]{1,2}[xs]$/i)) {
-      party += 'es';
-    } else if (!party.match(/ce$/i)) {
-      party += 's';
-    }
-    $(".party-name").text(party);
+    // HQ
+
+    // Description
+    var a = Math.floor(Math.random()*adjs.length);
+    $(".hq-desc").text(adjs[a]);
+    adjs.splice(a,1);
+
+    // Type of Establishment
+    var p = Math.floor(Math.random()*places_of_work.length);
+    $(".hq-place").text(places_of_work[p]);
+
+    // Name
+    var called = aka[Math.floor(Math.random()*aka.length)];
+    $('.hq-called').text(called);
+
+    var name = animals[Math.floor(Math.random()*animals.length)];
+    $('.hq-name').text(name);
+
+
+
+}
+
+// Take a word and return the plural version of it
+const plural = (input) => {
+  var output = input;
+  if(input.match(/[^aeiou][y]$/i)) {
+    output = input.replace(/[y]$/i,'ies');
+  } else if (input.match(/[^i][aeiou]{1,2}[xs]{1,2}$/i)) {
+    output += 'es';
+  } else if (!input.match(/[^e]s$/i)){
+    output += 's';
+  }
+  return output;
 }
 
 $(document).ready(() => {
