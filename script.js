@@ -4154,6 +4154,191 @@ const words = {
     "woodchuck",
     "yak",
     "zebra"
+  ],
+  "negative_adjs": [
+    "aggressive",
+    "aloof",
+    "arrogant",
+    "belligerent",
+    "big-headed",
+    "bitchy",
+    "boastful",
+    "bone-idle",
+    "boring",
+    "bossy",
+    "callous",
+    "cantankerous",
+    "careless",
+    "changeable",
+    "clinging",
+    "compulsive",
+    "conservative",
+    "cowardly",
+    "cruel",
+    "cunning",
+    "cynical",
+    "deceitful",
+    "detached",
+    "dishonest",
+    "dogmatic",
+    "domineering",
+    "finicky",
+    "flirtatious",
+    "foolish",
+    "foolhardy",
+    "fussy",
+    "greedy",
+    "grumpy",
+    "gullible",
+    "harsh",
+    "impatient",
+    "impolite",
+    "impulsive",
+    "inconsiderate",
+    "inconsistent",
+    "indecisive",
+    "indiscreet",
+    "inflexible",
+    "interfering",
+    "intolerant",
+    "irresponsible",
+    "jealous",
+    "lazy",
+    "Machiavellian",
+    "materialistic",
+    "mean",
+    "miserly",
+    "moody",
+    "narrow-minded",
+    "nasty",
+    "naughty",
+    "nervous",
+    "obsessive",
+    "obstinate",
+    "overcritical",
+    "overemotional",
+    "parsimonious",
+    "patronizing",
+    "perverse",
+    "pessimistic",
+    "pompous",
+    "possessive",
+    "pusillanimous",
+    "quarrelsome",
+    "quick-tempered",
+    "resentful",
+    "rude",
+    "ruthless",
+    "sarcastic",
+    "secretive",
+    "selfish",
+    "self-centred",
+    "self-indulgent",
+    "silly",
+    "sneaky",
+    "stingy",
+    "stubborn",
+    "stupid",
+    "superficial",
+    "tactless",
+    "timid",
+    "touchy",
+    "thoughtless",
+    "truculent",
+    "unkind",
+    "unpredictable",
+    "unreliable",
+    "untidy",
+    "untrustworthy",
+    "vague",
+    "vain",
+    "vengeful",
+    "vulgar",
+    "weak-willed"
+  ],
+  "positive_adjs": [
+    "Able",
+    "Abundant",
+    "Aboveboard",
+    "Acceptable",
+    "Accurate",
+    "Achieving",
+    "Affordable",
+    "Adaptable",
+    "Ambitious",
+    "Calculated",
+    "Captivating",
+    "Careful",
+    "Casual",
+    "Calm",
+    "Capable",
+    "Certain",
+    "Charming",
+    "Cheerful",
+    "Cheery",
+    "Cherished",
+    "Chic",
+    "Civil",
+    "Clean",
+    "Comfortable",
+    "Cooperative",
+    "Cordial",
+    "Crafty",
+    "Cute",
+    "Clever",
+    "Natural",
+    "Naturalistic",
+    "Neutral",
+    "Needed",
+    "Neat",
+    "Necessary",
+    "New",
+    "Nifty",
+    "Nice",
+    "Nontoxic",
+    "Notable",
+    "Nourishing",
+    "Novel",
+    "Nurturant",
+    "Tactful",
+    "Talented",
+    "Tasty",
+    "Tasteful",
+    "Teachable",
+    "Thankful",
+    "Thoughtful",
+    "Thorough",
+    "Thrifty",
+    "Thrilled",
+    "Thriving",
+    "Timeless",
+    "Tolerant",
+    "Top-notch",
+    "Perfect",
+    "Reasonable",
+    "Luxurious",
+    "Kind-hearted",
+    "Justified",
+    "Wonderful",
+    "Heroic",
+    "Glamorous",
+    "Forgiving",
+    "Expressive",
+    "Valuable",
+    "Dapper",
+    "Stunning",
+    "Beloved",
+    "Dazzling",
+    "Excellent",
+    "Flashy",
+    "Healing",
+    "Legit",
+    "Optimistic",
+    "Peaceful",
+    "Romantic",
+    "Loving",
+    "Faithful",
+    "Soothing"
   ]
 };
 
@@ -4171,6 +4356,8 @@ const generate = () => {
     var places_of_work = words['places_of_work'];
     var aka = words['aka'];
     var animals = words['animals'];
+    var positive_adjs = words['positive_adjs'];
+    var negative_adjs = words['negative_adjs'];
 
     // Game
 
@@ -4271,16 +4458,145 @@ const generate = () => {
     var name = animals[Math.floor(Math.random()*animals.length)];
     $('.hq-name').text(name);
 
+    // Strengths
+    var strengths = "";
+    for (var i = 0; i < 4; i++) {
+      var p = Math.floor(Math.random()*positive_adjs.length);
+      strengths += `<b class="text-capitalize">${positive_adjs[p]},</b> `;
+      positive_adjs.splice(p,1);
+    }
+    var p = Math.floor(Math.random()*positive_adjs.length);
+    strengths += `or <b class="text-capitalize">${positive_adjs[p]}</a>`;
+    $(".hq-strengths").html(strengths);
 
+    // Problems
+    var problems = "";
+    for (var i = 0; i < 4; i++) {
+      var p = Math.floor(Math.random()*negative_adjs.length);
+      problems += `<b class="text-capitalize">${negative_adjs[p]},</b> `;
+      negative_adjs.splice(p,1);
+    }
+    var p = Math.floor(Math.random()*negative_adjs.length);
+    problems += `or <b class="text-capitalize">${negative_adjs[p]}</a>`;
+    $(".hq-problems").html(problems);
+
+    // Create the adventure
+
+    // A Threat...
+    var threats = [];
+    for (var i = 1; i <= 6; i ++) {
+      var threat = "";
+      if (Math.round(Math.random()) == 1) {
+        threat += "The ";
+      }
+      if (Math.round(Math.random()) == 1) {
+        var p = Math.floor(Math.random()*negative_adjs.length);
+        threat += `${negative_adjs[p]} `;
+        negative_adjs.splice(p,1);
+      }
+      if (Math.round(Math.random()) == 1) {
+        var n = Math.floor(Math.random()*nouns.length);
+        threat += `${plural(nouns[n])}`;
+        nouns.splice(n,1);
+      } else {
+        var n = Math.floor(Math.random()*nouns.length);
+        threat += `${nouns[n]}`;
+        nouns.splice(n,1);
+      }
+
+      var style = "py-2 ";
+      if (i % 2 == 0) {
+        style += "bg-info text-white";
+      }
+
+      threats.push(`<div class="col-6 text-capitalize ${style}">${i}. ${threat}</div>`);
+    }
+
+    $('.gm-threats').html(`<div class="row">${threats[0]}${threats[3]}</div><div class="row">${threats[1]}${threats[4]}</div><div class="row">${threats[2]}${threats[5]}</div>`);
+
+    // Wants To...
+    var wants = [];
+    for (var i = 1; i <= 6; i ++) {
+      var want = ergative_verbs[Math.floor(Math.random()*ergative_verbs.length)];
+
+      var style = "py-2 ";
+      if (i % 2 == 0) {
+        style += "bg-secondary text-white";
+      }
+
+      wants.push(`<div class="col-6 text-capitalize ${style}">${i}. ${want}</div>`);
+    }
+
+    $('.gm-wants').html(`<div class="row">${wants[0]}${wants[3]}</div><div class="row">${wants[1]}${wants[4]}</div><div class="row">${wants[2]}${wants[5]}</div>`);
+
+    // The...
+    var the = [];
+    for (var i = 1; i <= 6; i ++) {
+      var that = "";
+      if (Math.round(Math.random()) == 1) {
+        that += "The ";
+      }
+      if (Math.round(Math.random()) == 1) {
+        var p = Math.floor(Math.random()*positive_adjs.length);
+        that += `${positive_adjs[p]} `;
+        positive_adjs.splice(p,1);
+      }
+      if (Math.round(Math.random()) == 1) {
+        var n = Math.floor(Math.random()*nouns.length);
+        that += `${plural(nouns[n])}`;
+        nouns.splice(n,1);
+      } else {
+        var n = Math.floor(Math.random()*nouns.length);
+        that += `${nouns[n]}`;
+        nouns.splice(n,1);
+      }
+
+      var style = "py-2 ";
+      if (i % 2 == 0) {
+        style += "bg-info text-white";
+      }
+
+      the.push(`<div class="col-6 text-capitalize ${style}">${i}. ${that}</div>`);
+    }
+
+    $('.gm-the').html(`<div class="row">${the[0]}${the[3]}</div><div class="row">${the[1]}${the[4]}</div><div class="row">${the[2]}${the[5]}</div>`);
+
+    // Which Will...
+    var will = [];
+    for (var i = 1; i <= 6; i ++) {
+      var which = ergative_verbs[Math.floor(Math.random()*ergative_verbs.length)];
+      if (Math.round(Math.random()) == 1) {
+        var n = Math.floor(Math.random()*nouns.length);
+        which += ` ${plural(nouns[n])}`;
+        nouns.splice(n,1);
+      } else {
+        var n = Math.floor(Math.random()*nouns.length);
+        which += ` the ${nouns[n]}`;
+        nouns.splice(n,1);
+      }
+
+      var style = "py-2 ";
+      if (i % 2 == 0) {
+        style += "bg-secondary text-white";
+      }
+
+      will.push(`<div class="col-6 text-capitalize ${style}">${i}. ${which}</div>`);
+    }
+
+    $('.gm-which-will').html(`<div class="row">${will[0]}${will[3]}</div><div class="row">${will[1]}${will[4]}</div><div class="row">${will[2]}${will[5]}</div>`);
 
 }
 
 // Take a word and return the plural version of it
 const plural = (input) => {
   var output = input;
-  if(input.match(/[^aeiou][y]$/i)) {
+  if(input.match(/an$/i)) {
+    output = input.replace(/an$/i,'en');
+  } else if(input.match(/[^aeiou][y]$/i)) {
     output = input.replace(/[y]$/i,'ies');
-  } else if (input.match(/[^i][aeiou]{1,2}[xs]{1,2}$/i)) {
+  } else if (input.match(/[^ik][aeiou]{1,2}[xs]{1,2}$/i)) {
+    output += 'es';
+  } else if (input.match(/sh$/i)){
     output += 'es';
   } else if (!input.match(/[^e]s$/i)){
     output += 's';
